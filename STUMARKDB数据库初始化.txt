@@ -1,0 +1,84 @@
+
+create database stumarkdb charset gbk;
+use stumarkdb;
+create table tb_student(
+sno char(7) primary key,
+sname varchar(10) not null,
+edate date,
+ssex char(2) default "男",
+sage tinyint unsigned,
+tel char(11) unique,
+classname varchar(30));
+
+create table tb_course(
+cno char(4) primary key,
+cname varchar(30) not null,
+credit float,
+cours int
+);
+
+create table tb_mark(
+sno char(7),
+cno char(4),
+grade int,
+primary key(sno,cno),
+foreign key(sno) references tb_student(sno),
+foreign key(cno) references tb_course(cno));
+
+delete from tb_mark;
+delete from tb_student;
+delete from tb_course;
+
+
+insert into tb_student values("2019001","李柳","2019-9-03","女",20,"15956743461","19软件4班");
+insert into tb_student(sno,sname,sage,classname) values("2019016","王天马",19,"19软件1班");
+insert into tb_student 
+values("2019009","张陆","2019-7-29","男",20,"15998345664","19软件3班"),
+("2019004","白合","2019-9-1","女",20,"15884564312","19软件5班"),
+("2019014","张宇","2019-9-2","女",19,"15909834565","19软件6班");
+
+update tb_student set edate="2019-8-31",tel="13645643456" where sname="王天马";
+
+insert into tb_student(sno,sname,sage,classname) values("2019002","王丰台",22,"19软件2班");
+insert into tb_student(sno,sname,ssex,sage,classname) values("2019011","黄敏洁","女",18,"19软件5班");
+insert into tb_student(sno,sname,ssex,sage,classname,edate) values("2019012","刘小宇","男",19,"19软件5班","2018-9-03");
+insert into tb_student(sno,sname) values("2019013","黄庆");
+update tb_student set ssex=null where sno="2019013";
+insert into tb_student values("2019006","程宇翔","2019-8-28","男",21,"15920134532","19软件2班");
+insert tb_student values("2019010","李丽","2019-10-1","女",20,"15884564432","19软件4班");
+insert tb_student values("2019015","薛海宇","2019-9-2","男",19,"15998345350","19软件6班");
+insert into tb_student values("2017001","张宇","2017-9-10","男",22,"15920122222","17软件1班");
+insert into tb_student values("2019017","王杏","2018-9-4","女",22,"15998545350","19软件2班");
+insert into tb_student values("2019021","唐慧湘","2020-3-1","女",17,"15884564332","19软件4班");
+
+insert into tb_course values("c001","MySQL数据库应用",3.5,60);
+insert into tb_course values("c002","PHP程序设计",5,90);
+insert into tb_course values("c003","C语言设计",3.5,64);
+insert into tb_course values("c004","线性代数",3.5,64);
+insert into tb_course values("c011","就业指导_第一期",1,16);
+
+
+insert into tb_mark values("2019001","c001",83);
+insert into tb_mark values("2019002","c001",67);
+insert into tb_mark values("2019006","c001",56);
+insert into tb_mark values("2019009","c001",92);
+insert into tb_mark values("2019010","c001",45);
+insert into tb_mark values("2019011","c001",73);
+insert into tb_mark values("2019012","c001",89);
+insert into tb_mark values("2019014","c001",69);
+insert into tb_mark values("2019015","c001",94);
+insert into tb_mark values("2019002","c002",67);
+insert into tb_mark values("2019006","c002",58);
+insert into tb_mark values("2019010","c002",45);
+insert into tb_mark values("2019012","c002",99);
+insert into tb_mark values("2019014","c002",79);
+insert into tb_mark values("2019021","c002",80);
+insert into tb_mark values("2019011","c002",null);
+insert into tb_mark values("2019001","c003",null);
+insert into tb_mark values("2019009","c003",70);
+insert into tb_mark values("2019010","c003",74);
+insert into tb_mark values("2019011","c003",62);
+insert into tb_mark values("2019012","c003",91);
+insert into tb_mark values("2019014","c003",79);
+insert into tb_mark values("2019015","c003",82);
+
